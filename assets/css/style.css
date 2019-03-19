@@ -1,0 +1,18 @@
+p {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    color: lightsteelblue;
+}
+
+h1 {
+    font-family: 'Kaushan Script', cursive;
+    color: darkmagenta;
+}
+
+.mainContent {
+    background-color: #21212E;
+    position: relative;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 960px;
+    margin: auto;
+}
