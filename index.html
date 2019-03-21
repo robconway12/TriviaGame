@@ -9,16 +9,26 @@
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Yanone+Kaffeesatz" rel="stylesheet">
 </head>
 <body background = "assets/images/diagonal-squares.png">
-    <section class="mainContent">
-        <h1>
-            Trivia Game!
-        </h1>
-
-    </section>
     
-
-
+    <section class="mainContent">
+        
+        <div>
+            <h1><span class="iceCream">Ice Cream</span> Trivia Game!</h1>
+            <div class="flex-container">
+                <p id="questionNumber">Question <span id="questionNo">X</span> of 10</p>
+                <p id="timer"></p>
+            </div>
+            <p id="question"></p>
+            <div id="selections">
+                <button id="buttonA"><span id="optionA"></span></button>
+                <button id="buttonB"><span id="optionB"></span></button>
+                <button id="buttonC"><span id="optionC"></span></button>
+                <button id="buttonD"><span id="optionD"></span></button>
+            </div>
+        </div>
+    </section>
 
     <script src="assets/javascript/app.js"></script>
+
 </body>
 </html>
