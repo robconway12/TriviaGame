@@ -1,66 +1,91 @@
 body {
-    background-color: #21212E
+	background-color: #21212e;
 }
 
 p {
-    font-family: 'Yanone Kaffeesatz', sans-serif;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
     color: lightsteelblue;
+    font-size: 25px;
 }
 
 h1 {
-    font-family: 'Kaushan Script', cursive;
-    color: darkmagenta;
-    font-size: 50px;
-    padding: 2px;
+	font-family: 'Kaushan Script', cursive;
+	color: darkmagenta;
+	font-size: 50px;
+	padding: 2px;
 }
 
 .iceCream {
     font-size: 80px;
+    color: deeppink;
 }
 
-.mainContent {
-    background-color: #21212E;
-    position: relative;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    width: 960px;
-    height: 500px;
-    margin: 0 auto;
-    padding: 10px 50px;
-    border-radius: 30px;
-    border: 2px solid darkmagenta;
-    box-shadow: 10px 12px 10px rgb(71, 32, 97);
-}
-
-#question {
+h2 {
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+    color: lightsteelblue;
     font-size: 30px;
 }
 
+.mainContent {
+	background-color: #21212e;
+	position: relative;
+	width: 75%;
+	height: 75%;
+	margin: 30px auto;
+	padding: 10px 50px;
+	border-radius: 30px;
+	border: 2px solid darkmagenta;
+	box-shadow: 10px 12px 10px rgb(71, 32, 97);
+}
+
+#question {
+	font-size: 30px;
+}
+
 #selections {
-    margin-top: 30px;
+    margin: 30px auto;
+    display: none;
 }
 
 button {
-    background-color: midnightblue;
-    width: 440px;
-    font-size: 20px;
-    color: lightsteelblue;
-    border: 1px solid darkmagenta;
-    border-radius: 20px;
-    margin: 10px;
+	background-color: midnightblue;
+	width: 45%;
+	font-size: 20px;
+	color: lightsteelblue;
+	border: 1px solid darkmagenta;
+	border-radius: 20px;
+    margin: 15px;
+    display: inline;
+}
+
+#startButton, #subContent {
+    display: block;
+    margin: 0px auto 20px auto;
 }
 
 button:hover {
-    background-color: blueviolet;
-    cursor: pointer;
-    box-shadow: 5px 5px 10px rgb(71, 32, 97);
+	background-color: blueviolet;
+	cursor: pointer;
+	box-shadow: 5px 5px 10px rgb(71, 32, 97);
 }
 
 button:focus {
-    outline: 0;
+	outline: 0;
 }
 
 .flex-container {
-    display: flex;
-    flex-direction: row;
-  }
+	display: flex;
+	flex-direction: row;
+}
+
+#questionNumber {
+    display: none;
+}
+
+.bright {
+    color: deeppink;
+}
+
+#timer {
+    display: none;
+}

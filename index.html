@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Trivia Game</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Yanone+Kaffeesatz" rel="stylesheet">
-</head>
-<body background = "assets/images/diagonal-squares.png">
-    
-    <section class="mainContent">
-        
-        <div>
-            <h1><span class="iceCream">Ice Cream</span> Trivia Game!</h1>
-            <div class="flex-container">
-                <p id="questionNumber">Question <span id="questionNo">X</span> of 10</p>
-                <p id="timer"></p>
-            </div>
-            <p id="question"></p>
-            <div id="selections">
-                <button id="buttonA"><span id="optionA"></span></button>
-                <button id="buttonB"><span id="optionB"></span></button>
-                <button id="buttonC"><span id="optionC"></span></button>
-                <button id="buttonD"><span id="optionD"></span></button>
-            </div>
-        </div>
-    </section>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Trivia Game</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+        <script src="jquery-3.3.1.slim.min.js" ></script>
+		<link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Yanone+Kaffeesatz" rel="stylesheet" />
+	</head>
+	<body background="assets/images/diagonal-squares.png">
+		<section class="mainContent">
+			<div>
+				<h1><span class="iceCream">Ice Cream</span> Trivia Game!</h1>
+				<div class="flex-container">
+                    <div id="instructions">
+                        <p>I scream, you scream, we <span class="bright">ALL</span> scream for ice cream!</p>
+                        <p>How well do you know everyone's favoite treat? Click the start button and test your knowledge!</p>
+                        <p> You will have <span class="bright">31 flavors...</span> uh seconds to answer each question.</p>
+                    </div>
+                    <p id="questionNumber"></p>
+                </div>
+                <h2 id="timer">00:31</h2>
+				<h2 class="question"></h2>
+				<div id="choiceBox" class="flex-container">
+                </div>
+                <button id="startButton">Start the Quiz!</button>
+			</div>
+		</section>
 
-    <script src="assets/javascript/app.js"></script>
-
-</body>
+	    <script src="assets/javascript/app.js"></script>
+	</body>
 </html>
