@@ -4,8 +4,7 @@ $(document).ready(function() {
   var countCorrect = 0;
   var countIncorrect = 0;
   var time = 31; // timer at 31 secs
-  // question counter
-  var counter = 0;
+  var counter = 0; // question counter
 
   $("#startButton").click(function(){
     $("#startButton").hide();
@@ -22,144 +21,88 @@ $(document).ready(function() {
    
       $("#questionNumber").html("<p>Question " + getQuestion[counter].questionNumber + " out of 10</p>");
       $("#question").text(getQuestion[counter].question);
-      $("#choiceBox").append("<button>" + getQuestion[counter].options[0] + "</button>",
-        "<button>" + getQuestion[counter].options[1] + "</button>");
-      $("#choiceBox").append("<button>" + getQuestion[counter].options[2] + "</button>",
-        "<button>" + getQuestion[counter].options[3] + "</button>"
-      )};
+      $("#choiceBox").append("<button class=\"clickMe\">" + getQuestion[counter].options[0] + "</button>",
+        "<button  class=\"clickMe\">" + getQuestion[counter].options[1] + "</button>");
+      $("#choiceBox").append("<button  class=\"clickMe\">" + getQuestion[counter].options[2] + "</button>",
+        "<button  class=\"clickMe\">" + getQuestion[counter].options[3] + "</button>")
+    };
 
-  // user guessed correctly
+  // player guessed correctly
   function correctGuess() {
-    $("#choiceBox").html("<p>You got it right!</p>");
+    $("#choiceBox").html("<p>Yayyy! That's the right answer!</p>");
     countCorrect++;
     var correctAnswer = getQuestion[counter].correctAnswer;
-    $("#choiceBox").append("<p>The answer was <span class='answer'>" + 
-      correctAnswer + 
-      "</span></p>" + 
-      getQuestion[counter].image);
+    $("#choiceBox").append("<p>The answer was <span class='answer'>" + correctAnswer + "</span></p>");
     setTimeout(nextQuestion, 4000);
     counter++;
-  }
+  };
 
-// user guessed incorrectly
-function incorrectGuess() {
-  $("#choiceBox").html("<p>Nope, that's not it!</p>");
-  countIncorrect++;
-  var correctAnswer = getQuestion[counter].correctAnswer;
-  $("#choiceBox").append("<p>The answer was <span class='answer'>" + 
-    correctAnswer + 
-    "</span></p>" + 
-    getQuestion[counter].image);
-  setTimeout(nextQuestion, 5000);
-  counter++;
-}
-
-// user ran out of time
-function timesUp() {
-  if (time === 0) {
-    $("#choiceBox").html("<p>You ran out of time!</p>");
+  // player guessed incorrectly
+  function incorrectGuess() {
+    $("#choiceBox").html("<p>Sorry! That's incorrect.</p>");
     countIncorrect++;
     var correctAnswer = getQuestion[counter].correctAnswer;
-    $("#choiceBox").append("<p>The correct answer is \"<span class='answer bright'>" + 
-      correctAnswer + 
-      "\"</span></p>" + 
-      getQuestion[counter].image);
-    setTimeout(nextQuestion, 5000);
+    $("#choiceBox").append("<p>The answer was <span>" + correctAnswer + "</span></p>");
+      setTimeout(nextQuestion, 5000);
     counter++;
-  }
-}
+  };
 
-// screen that shows final score and nice message :)
-function resultsScreen() {
-  if (countCorrect === questions.length) {
-    var endMessage = "Perfection! Might want to go outside more tho";
-    var bottomText = "#nerdalert!";
-  }
-  else if (countCorrect > countIncorrect) {
-    var endMessage = "Good work! But do better you can...";
-    var bottomText = "all your base are belong to us";
-  }
-  else {
-    var endMessage = "You seem to have taken an arrow to the knee";
-    var bottomText = "#scrub";
-  }
-  $("#choiceBox").html("<p>" + endMessage + "</p>" + "<p>You got <strong>" + 
-    countCorrect + "</strong> right.</p>" + 
-    "<p>You got <strong>" + countIncorrect + "</strong> wrong.</p>");
+  // player ran out of time
+  function timesUp() {
+    if (time === 0) {
+      $("#choiceBox").html("<p>You ran out of time!  <br></p>");
+      countIncorrect++;
+      var correctAnswer = getQuestion[counter].correctAnswer;
+      $("#choiceBox").append("<p> The correct answer is <span class='bright'>" + 
+        correctAnswer + "</span></p>");
+      setTimeout(nextQuestion, 5000);
+      counter++;
+    }
+  };
+
+  // Show result screen
+  $("#choiceBox").html("<p>" + endMessage + "</p>" + "<p>You answered" + 
+    countCorrect + "questions correctly!</p>" + 
+    "<p>You answered" + countIncorrect + "questions incorrectly.</p>");
   $("#choiceBox").append("<h1 id='start'>Start Over?</h1>");
-  $("#bottomText").html(bottomText);
   gameReset();
   $("#start").click(nextQuestion);
-}
 
-// game clock currently set to 31 seconds
-function timer() {
-  clock = setInterval(countDown, 1000);
-  function countDown() {
-    if (time < 1) {
-      clearInterval(clock);
+  // game clock currently set to 31 seconds
+  function timer() {
+    clock = setInterval(countDown, 1000);
+    function countDown() {
+      if (time === 0) {
+        clearInterval(clock);
+        timesUp();
+      }
+      if (time > 0) {
+        time--;
+      }
+      $("#timer").text("Time remaining: 00:" + time);
+    }
+  };
+
+  // moves question counter to next question
+  function nextQuestion() {
+    if (counter < getQuestion.length) {
+      time = 31;
+      $('#choiceBox').empty();
+      populateQuestions();
+      timer();
       timesUp();
     }
-    if (time > 0) {
-      time--;
+    else {
+      resultsScreen();
     }
-    $("#timer").text("00:" + time);
-  }
-}
+  };
 
-// moves question counter forward to show next question
-function nextQuestion() {
-  if (counter < getQuestion.length) {
-    time = 31;
-    populateQuestions();
-    timer();
-    timesUp();
-  }
-  else {
-    resultsScreen();
-  }
-// console.log(counter);
-// console.log(getQuestion[counter].correctAnswer);
-}
-
-// reset score and counter parameters on restart
-function gameReset() {
-  counter = 0;
-  countCorrect = 0;
-  countIncorrect = 0;
-}
-
-  function startGame() {
-    $("#choiceBox").html("<p>You have <span id='timer'>" + time + "</span> seconds left!</p>");
-    $("#start").hide();
-    // $("#choiceBox").append("<div id='question'>");
-    // var nextQuestion = populateQuestions(counter);
-    // $("#choiceBox").append(nextQuestion);
-
-  // $("#choiceBox").append("<p>" + getQuestion[counter].question + "</p><p>" + getQuestion[counter].options[0] + "</p><p>" + getQuestion[counter].options[1] + "</p><p>" + getQuestion[counter].options[2] + "</p><p>" + getQuestion[counter].options[3] + "</p>");
-  // counter++;
-  populateQuestions();
-    timer();
-    timesUp();
-  }
-
-  // this starts the game
-  $("#start").click(nextQuestion);
-
-  // click function to trigger right or wrong screen
-$("#choiceBox").on("click", ".options", (function() {
-  // alert("clicked!");
-  var playerChoice = $(this).text();
-  if (playerChoice === getQuestion[counter].correctAnswer) {
-    clearInterval(clock);
-    correctGuess();
-  }
-  else {
-    clearInterval(clock);
-    incorrectGuess();
-  }
-}));
-});
+  // reset score and counter parameters on restart
+  function gameReset() {
+    counter = 0;
+    countCorrect = 0;
+    countIncorrect = 0;
+  };
 
 	var getQuestion = [
 		{
@@ -257,14 +200,11 @@ $("#choiceBox").on("click", ".options", (function() {
 			playerChoice: '',
 			correct: false,
 			time: 0,
-		},
+		}
   ];
   
-
-
       // click function to trigger right or wrong screen
-    $("#choiceBox").on("click", ".options", (function() {
-      // alert("clicked!");
+    $("#choiceBox").click(function() {
       var playerChoice = $(this).text();
       if (playerChoice === getQuestion[counter].correctAnswer) {
         clearInterval(clock);
@@ -273,5 +213,6 @@ $("#choiceBox").on("click", ".options", (function() {
       else {
         clearInterval(clock);
         incorrectGuess();
-      }
-    }));
+      };
+    });
+});
